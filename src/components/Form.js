@@ -12,20 +12,24 @@ export default function Form(props) {
   ////////////// EVENT HANDLERS //////////////
   ////////////// EVENT HANDLERS //////////////
   const onCancel = evt => {
-    console.log(`TASK 6- This should prevent the default behavior and
-      reset the form to its original values.`)
+
+      reset()
+      evt.preventDefault()
   }
 
   const onSubmit = evt => {
-    console.log(`TASK 7- This should prevent the default behavior and
-      check whether 'values' contains a truthy id. If so, invoke the correct callback
-      to [PUT] an existing quote, otherwise invoke the correct callback
-      to [POST] a new quote.`)
+
+      {values.id ? putQuote(values) : postQuote(values)}
+      evt.preventDefault()
   }
 
   const onChange = evt => {
-    console.log(`TASK 8- Obtain 'name' and 'value' from the target of the event,
-      and utilize the correct callback to update the state of the form.`)
+
+      setValues({
+        ...values,
+        [evt.target.name]: evt.target.value
+      })
+      evt.preventDefault()
   }
 
   ////////////// HELPER //////////////
